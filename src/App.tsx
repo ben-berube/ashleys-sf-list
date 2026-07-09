@@ -1,10 +1,13 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { FilterBar } from './components/FilterBar';
 import { PlaceCard } from './components/PlaceCard';
-import { CATEGORIES, PLACES, type CategoryId } from './data/places';
+import { AdminPanel } from './components/AdminPanel';
+import { usePlaces } from './hooks/usePlaces';
+import { CATEGORIES, type CategoryId } from './data/places';
 
 const VISITED_KEY = 'ashleys-sf-visited';
+const NO_PLACES: never[] = [];
 
 function loadVisited(): Set<string> {
   try {
@@ -19,6 +22,39 @@ export default function App() {
   const [active, setActive] = useState<CategoryId | 'all'>('all');
   const [query, setQuery] = useState('');
   const [visited, setVisited] = useState<Set<string>>(loadVisited);
+  const [adminOpen, setAdminOpen] = useState(() => window.location.hash === '#admin');
+  const flagTaps = useRef<number[]>([]);
+
+  const { places, loading, hasDraft, setDraft, markPublished } = usePlaces();
+  const allPlaces = places ?? NO_PLACES;
+
+  useEffect(() => {
+    const onHash = () => setAdminOpen(window.location.hash === '#admin');
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  const openAdmin = () => {
+    window.location.hash = 'admin';
+    setAdminOpen(true);
+  };
+
+  const closeAdmin = () => {
+    if (window.location.hash === '#admin') {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    setAdminOpen(false);
+  };
+
+  // Secret entrance: tap the flag in the footer five times within 3 seconds
+  const onFlagTap = () => {
+    const now = Date.now();
+    flagTaps.current = [...flagTaps.current.filter((t) => now - t < 3000), now];
+    if (flagTaps.current.length >= 5) {
+      flagTaps.current = [];
+      openAdmin();
+    }
+  };
 
   useEffect(() => {
     localStorage.setItem(VISITED_KEY, JSON.stringify([...visited]));
@@ -34,16 +70,16 @@ export default function App() {
   };
 
   const counts = useMemo(() => {
-    const c: Record<string, number> = { all: PLACES.length };
+    const c: Record<string, number> = { all: allPlaces.length };
     for (const cat of CATEGORIES) {
-      c[cat.id] = PLACES.filter((p) => p.categories.includes(cat.id)).length;
+      c[cat.id] = allPlaces.filter((p) => p.categories.includes(cat.id)).length;
     }
     return c;
-  }, []);
+  }, [allPlaces]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return PLACES.filter((p) => {
+    return allPlaces.filter((p) => {
       const matchesCategory = active === 'all' || p.categories.includes(active);
       const matchesQuery =
         q === '' ||
@@ -51,7 +87,7 @@ export default function App() {
         (p.note ?? '').toLowerCase().includes(q);
       return matchesCategory && matchesQuery;
     });
-  }, [active, query]);
+  }, [allPlaces, active, query]);
 
   return (
     <div className="app">
@@ -60,6 +96,12 @@ export default function App() {
         <span className="tricolor-blue" />
         <span className="tricolor-red" />
       </div>
+
+      {hasDraft && !adminOpen && (
+        <button className="draft-banner" onClick={openAdmin}>
+          Previewing unpublished changes — tap to open the panel
+        </button>
+      )}
 
       <header className="hero">
         <motion.p
@@ -84,7 +126,7 @@ export default function App() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.22 }}
         >
-          {PLACES.length} spots to eat, drink &amp; wander — con un toquecito colombiano&nbsp;🇨🇴
+          {allPlaces.length || '…'} spots to eat, drink &amp; wander — con un toquecito colombiano&nbsp;🇨🇴
         </motion.p>
       </header>
 
@@ -99,9 +141,11 @@ export default function App() {
           />
 
           <div className="results-meta" aria-live="polite">
-            {filtered.length === PLACES.length
-              ? `Showing everything (${filtered.length})`
-              : `${filtered.length} place${filtered.length === 1 ? '' : 's'}`}
+            {loading
+              ? 'Loading the list…'
+              : filtered.length === allPlaces.length
+                ? `Showing everything (${filtered.length})`
+                : `${filtered.length} place${filtered.length === 1 ? '' : 's'}`}
             {visited.size > 0 && (
               <span className="visited-count"> · {visited.size} visited 💛</span>
             )}
@@ -120,7 +164,7 @@ export default function App() {
             </AnimatePresence>
           </motion.ul>
 
-          {filtered.length === 0 && (
+          {!loading && filtered.length === 0 && (
             <motion.p
               className="empty"
               initial={{ opacity: 0 }}
@@ -133,13 +177,28 @@ export default function App() {
       </main>
 
       <footer className="footer">
-        <span className="footer-flag" aria-hidden="true">
+        <button
+          className="footer-flag"
+          onClick={onFlagTap}
+          aria-label="Colombian flag"
+          title="🤫"
+        >
           <span className="tricolor-yellow" />
           <span className="tricolor-blue" />
           <span className="tricolor-red" />
-        </span>
+        </button>
         <p>Hecho con amor para Ashley — San Francisco, CA</p>
       </footer>
+
+      <AdminPanel
+        open={adminOpen}
+        onClose={closeAdmin}
+        places={allPlaces}
+        hasDraft={hasDraft}
+        onChange={setDraft}
+        onDiscard={() => setDraft(null)}
+        onPublished={markPublished}
+      />
     </div>
   );
 }

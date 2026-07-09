@@ -35,15 +35,40 @@ npm run lint       # run oxlint
 
 ## Editing the list
 
-All places live in [`src/data/places.ts`](src/data/places.ts). Each entry is one line:
+### The secret admin panel (for Ashley 🤫)
 
-```ts
-place('Nopa', ['restaurants']),
-place('Qua o La', ['wine'], 'new wine bar'),
-place('Fools Errand', ['wine', 'beer']),   // multi-category is supported
+There are two ways in:
+
+- Add `#admin` to the site URL, or
+- Tap the little Colombian flag in the footer **5 times fast**
+
+Inside the panel you can add new spots, rename them, edit their notes, toggle their
+categories, and delete them. Edits preview instantly on the page behind the panel and are
+saved as a draft on your device — nothing goes live until you hit **Publish to the site**.
+
+Publishing requires a GitHub token (this is what keeps the panel actually secret — anyone
+can open it, but only someone with the token can change the live site):
+
+1. Get added as a collaborator on this repo (Settings → Collaborators)
+2. Create a fine-grained token at
+   [github.com/settings/personal-access-tokens/new](https://github.com/settings/personal-access-tokens/new):
+   scope it to **only this repository** with **Contents: Read and write** permission
+3. Paste it into the field at the bottom of the panel — it's stored only in your
+   browser's localStorage, never in the code
+
+When you publish, the panel commits the updated list to the repo and the site redeploys
+automatically within a minute or two.
+
+### Editing the data directly
+
+All places live in [`public/places.json`](public/places.json), fetched by the app at
+runtime. Each entry looks like:
+
+```json
+{ "id": "qua-o-la", "name": "Qua o La", "categories": ["wine"], "note": "new wine bar" }
 ```
 
-Add, remove, or re-categorize places there and the filters, counts, and search update
-automatically.
+Multi-category is supported (e.g. Fools Errand is `["wine", "beer"]`). Edit the file and
+push to `main` — filters, counts, and search update automatically after the deploy.
 
 Hecho con amor para Ashley 💛💙❤️

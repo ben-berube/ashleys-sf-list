@@ -1,0 +1,430 @@
+[
+  {
+    "id": "amelie",
+    "name": "Amelie",
+    "categories": [
+      "wine"
+    ]
+  },
+  {
+    "id": "bodega",
+    "name": "Bodega",
+    "categories": [
+      "wine"
+    ]
+  },
+  {
+    "id": "beretta",
+    "name": "Beretta",
+    "categories": [
+      "wine"
+    ]
+  },
+  {
+    "id": "golden-sardine",
+    "name": "Golden Sardine",
+    "categories": [
+      "wine"
+    ]
+  },
+  {
+    "id": "qua-o-la",
+    "name": "Qua o La",
+    "categories": [
+      "wine"
+    ],
+    "note": "new wine bar"
+  },
+  {
+    "id": "waystone",
+    "name": "Waystone",
+    "categories": [
+      "wine"
+    ]
+  },
+  {
+    "id": "key-klub",
+    "name": "Key Klub",
+    "categories": [
+      "wine"
+    ]
+  },
+  {
+    "id": "bar-crudo",
+    "name": "Bar Crudo",
+    "categories": [
+      "wine"
+    ]
+  },
+  {
+    "id": "fools-errand",
+    "name": "Fools Errand",
+    "categories": [
+      "wine",
+      "beer"
+    ]
+  },
+  {
+    "id": "murphy-s-pub",
+    "name": "Murphy's Pub",
+    "categories": [
+      "beer"
+    ]
+  },
+  {
+    "id": "aces",
+    "name": "Aces",
+    "categories": [
+      "beer"
+    ]
+  },
+  {
+    "id": "standard-deviant",
+    "name": "Standard Deviant",
+    "categories": [
+      "beer"
+    ]
+  },
+  {
+    "id": "el-chato",
+    "name": "El Chato",
+    "categories": [
+      "cocktails"
+    ]
+  },
+  {
+    "id": "peacekeeper",
+    "name": "Peacekeeper",
+    "categories": [
+      "cocktails"
+    ]
+  },
+  {
+    "id": "harper-rhye",
+    "name": "Harper & Rhye",
+    "categories": [
+      "cocktails"
+    ]
+  },
+  {
+    "id": "bar-darling",
+    "name": "Bar Darling",
+    "categories": [
+      "cocktails"
+    ]
+  },
+  {
+    "id": "april-jean",
+    "name": "April Jean",
+    "categories": [
+      "cocktails"
+    ]
+  },
+  {
+    "id": "left-door",
+    "name": "Left Door",
+    "categories": [
+      "cocktails",
+      "speakeasy"
+    ],
+    "note": "elevated chic"
+  },
+  {
+    "id": "vesuvio-s",
+    "name": "Vesuvio's",
+    "categories": [
+      "cocktails"
+    ]
+  },
+  {
+    "id": "pellegrini-s",
+    "name": "Pellegrini's",
+    "categories": [
+      "cocktails"
+    ]
+  },
+  {
+    "id": "off-the-record",
+    "name": "Off the Record",
+    "categories": [
+      "cocktails"
+    ]
+  },
+  {
+    "id": "bar-morella",
+    "name": "Bar Morella",
+    "categories": [
+      "cocktails"
+    ]
+  },
+  {
+    "id": "persona",
+    "name": "Persona",
+    "categories": [
+      "cocktails"
+    ]
+  },
+  {
+    "id": "hi-lo",
+    "name": "Hi Lo",
+    "categories": [
+      "cocktails"
+    ]
+  },
+  {
+    "id": "busstop",
+    "name": "Busstop",
+    "categories": [
+      "vibes"
+    ]
+  },
+  {
+    "id": "boardroom",
+    "name": "Boardroom",
+    "categories": [
+      "vibes"
+    ]
+  },
+  {
+    "id": "northstar",
+    "name": "Northstar",
+    "categories": [
+      "vibes"
+    ]
+  },
+  {
+    "id": "brazen-head",
+    "name": "Brazen Head",
+    "categories": [
+      "vibes"
+    ]
+  },
+  {
+    "id": "bar-crem",
+    "name": "Bar Crem",
+    "categories": [
+      "vibes"
+    ]
+  },
+  {
+    "id": "the-page",
+    "name": "The Page",
+    "categories": [
+      "vibes"
+    ]
+  },
+  {
+    "id": "the-speakeasy",
+    "name": "The Speakeasy",
+    "categories": [
+      "speakeasy"
+    ],
+    "note": "1920's theme"
+  },
+  {
+    "id": "back-to-back",
+    "name": "Back to Back",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "lolita-s",
+    "name": "Lolita's",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "state-bird-provisions",
+    "name": "State Bird Provisions",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "fable",
+    "name": "Fable",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "horsefeather",
+    "name": "Horsefeather",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "liholiho",
+    "name": "Liholiho",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "nopa",
+    "name": "Nopa",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "house-of-prime-rib",
+    "name": "House of Prime Rib",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "boulevard",
+    "name": "Boulevard",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "hookfish",
+    "name": "Hookfish",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "kokkari",
+    "name": "Kokkari",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "cotogna",
+    "name": "Cotogna",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "tony-s",
+    "name": "Tony's",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "flour-water",
+    "name": "Flour & Water",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "out-of-sight-2",
+    "name": "Out of Sight 2",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "china-live",
+    "name": "China Live",
+    "categories": [
+      "restaurants"
+    ]
+  },
+  {
+    "id": "crissy-field-marina-green",
+    "name": "Crissy Field / Marina Green",
+    "categories": [
+      "nature"
+    ]
+  },
+  {
+    "id": "golden-gate-park",
+    "name": "Golden Gate Park",
+    "categories": [
+      "nature"
+    ]
+  },
+  {
+    "id": "panhandle",
+    "name": "Panhandle",
+    "categories": [
+      "nature"
+    ]
+  },
+  {
+    "id": "embarcadero",
+    "name": "Embarcadero",
+    "categories": [
+      "nature"
+    ]
+  },
+  {
+    "id": "bernal-heights-park",
+    "name": "Bernal Heights Park",
+    "categories": [
+      "nature"
+    ]
+  },
+  {
+    "id": "corona-heights-park",
+    "name": "Corona Heights Park",
+    "categories": [
+      "nature"
+    ]
+  },
+  {
+    "id": "salesforce-tower-park",
+    "name": "Salesforce Tower Park",
+    "categories": [
+      "nature"
+    ]
+  },
+  {
+    "id": "johnson-s-beach",
+    "name": "Johnson's Beach",
+    "categories": [
+      "explore"
+    ],
+    "note": "Russian River"
+  },
+  {
+    "id": "jack-s",
+    "name": "Jack's",
+    "categories": [
+      "explore"
+    ],
+    "note": "bar"
+  },
+  {
+    "id": "hang-ah",
+    "name": "Hang Ah",
+    "categories": [
+      "explore"
+    ],
+    "note": "dim sum"
+  },
+  {
+    "id": "pagan-idol",
+    "name": "Pagan Idol",
+    "categories": [
+      "explore"
+    ]
+  },
+  {
+    "id": "tonga",
+    "name": "Tonga",
+    "categories": [
+      "explore"
+    ]
+  },
+  {
+    "id": "rotunda",
+    "name": "Rotunda",
+    "categories": [
+      "explore"
+    ]
+  }
+]
