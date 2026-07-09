@@ -1,0 +1,403 @@
+:root {
+  /* Colombian flag palette, softened for a clean editorial look */
+  --col-yellow: #fcd116;
+  --col-blue: #003893;
+  --col-red: #ce1126;
+
+  --bg: #faf6ee;
+  --bg-card: #fffdf8;
+  --ink: #23201a;
+  --ink-soft: #6d6557;
+  --line: #e8e0d0;
+  --gold: #b8860b;
+
+  --radius: 18px;
+  --shadow: 0 1px 2px rgba(35, 32, 26, 0.05), 0 8px 24px -12px rgba(35, 32, 26, 0.18);
+  --shadow-hover: 0 2px 4px rgba(35, 32, 26, 0.06), 0 18px 38px -14px rgba(35, 32, 26, 0.28);
+
+  --font-display: 'Fraunces', 'Georgia', serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Colombian tricolor ribbon (flag proportions: 2:1:1) ---- */
+.tricolor {
+  display: flex;
+  flex-direction: column;
+  height: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.tricolor-yellow { flex: 2; background: var(--col-yellow); }
+.tricolor-blue { flex: 1; background: var(--col-blue); }
+.tricolor-red { flex: 1; background: var(--col-red); }
+
+/* ---- Hero ---- */
+.hero {
+  text-align: center;
+  padding: clamp(56px, 9vw, 104px) 24px clamp(28px, 4vw, 48px);
+  background:
+    radial-gradient(ellipse 60% 50% at 50% -10%, rgba(252, 209, 22, 0.16), transparent),
+    radial-gradient(ellipse 40% 35% at 85% 0%, rgba(0, 56, 147, 0.05), transparent);
+}
+
+.hero-eyebrow {
+  margin: 0 0 14px;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.hero-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(42px, 7.5vw, 84px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+
+.hero-title em {
+  font-style: italic;
+  background: linear-gradient(100deg, var(--col-yellow) 0%, var(--gold) 35%, var(--col-red) 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-sub {
+  margin: 18px auto 0;
+  max-width: 480px;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* ---- Main layout ---- */
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px) 72px;
+}
+
+/* ---- Filter bar ---- */
+.filter-bar {
+  position: sticky;
+  top: 8px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+  background: rgba(250, 246, 238, 0.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.search-wrap {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--ink-soft);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  position: relative;
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.chip:hover {
+  transform: translateY(-1px);
+  border-color: var(--chip-accent);
+  color: var(--ink);
+}
+
+.chip--active,
+.chip--active:hover {
+  color: #fff;
+  font-weight: 600;
+  border-color: transparent;
+}
+
+.chip-pill {
+  position: absolute;
+  inset: 0;
+  background: var(--chip-accent);
+  border-radius: 999px;
+}
+
+.chip-content {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chip-emoji {
+  font-size: 14px;
+}
+
+.chip-count {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(35, 32, 26, 0.08);
+}
+
+.chip--active .chip-count {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+/* ---- Results meta ---- */
+.results-meta {
+  margin: 18px 4px 14px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.visited-count {
+  font-weight: 600;
+}
+
+/* ---- Grid & cards ---- */
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.25s;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.card-stripe {
+  width: 5px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 60%, var(--col-yellow)));
+}
+
+.card-body {
+  padding: 16px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card-emoji {
+  font-size: 22px;
+}
+
+.card-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.card-note {
+  margin: 5px 0 0;
+  font-size: 13.5px;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+/* ---- Visited state ---- */
+.visit-btn {
+  border: none;
+  background: none;
+  padding: 4px;
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 50%;
+  transition: transform 0.15s;
+}
+
+.visit-btn:hover {
+  transform: scale(1.18);
+}
+
+.visit-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: #c9beab;
+  stroke-width: 1.8;
+  transition: fill 0.2s, stroke 0.2s;
+}
+
+.visit-btn--on svg {
+  fill: var(--col-red);
+  stroke: var(--col-red);
+}
+
+.card--visited {
+  background: color-mix(in srgb, var(--col-yellow) 6%, var(--bg-card));
+}
+
+.visited-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ---- Empty state ---- */
+.empty {
+  text-align: center;
+  margin: 56px 0;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+
+/* ---- Footer ---- */
+.footer {
+  text-align: center;
+  padding: 36px 24px 44px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.footer-flag {
+  display: inline-flex;
+  flex-direction: column;
+  width: 42px;
+  height: 26px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 10px;
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
