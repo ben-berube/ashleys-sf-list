@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
-import { FilterBar } from './components/FilterBar';
+import { FilterBar, type Filters } from './components/FilterBar';
 import { PlaceCard } from './components/PlaceCard';
 import { AdminPanel } from './components/AdminPanel';
 import { usePlaces } from './hooks/usePlaces';
-import { CATEGORIES, type CategoryId } from './data/places';
+import { ACTIVITIES, EXPERIENCES, NEIGHBORHOODS, type Place } from './data/places';
+
+const NO_FILTERS: Filters = { neighborhood: 'any', activity: 'any', experience: 'any' };
 
 const VISITED_KEY = 'ashleys-sf-visited';
 const NO_PLACES: never[] = [];
@@ -19,7 +21,7 @@ function loadVisited(): Set<string> {
 }
 
 export default function App() {
-  const [active, setActive] = useState<CategoryId | 'all'>('all');
+  const [filters, setFilters] = useState<Filters>(NO_FILTERS);
   const [query, setQuery] = useState('');
   const [visited, setVisited] = useState<Set<string>>(loadVisited);
   const [adminOpen, setAdminOpen] = useState(() => window.location.hash === '#admin');
@@ -69,25 +71,57 @@ export default function App() {
     });
   };
 
+  const anyActive =
+    filters.neighborhood !== 'any' ||
+    filters.activity !== 'any' ||
+    filters.experience !== 'any' ||
+    query.trim() !== '';
+
   const counts = useMemo(() => {
-    const c: Record<string, number> = { all: allPlaces.length };
-    for (const cat of CATEGORIES) {
-      c[cat.id] = allPlaces.filter((p) => p.categories.includes(cat.id)).length;
-    }
-    return c;
-  }, [allPlaces]);
+    const q = query.trim().toLowerCase();
+    const matchesQuery = (p: Place) =>
+      q === '' || p.name.toLowerCase().includes(q) || (p.note ?? '').toLowerCase().includes(q);
+
+    // Counts within a dimension reflect the OTHER active filters (plus search),
+    // so the numbers stay meaningful as you narrow things down.
+    const base = (ignore: keyof Filters) =>
+      allPlaces.filter(
+        (p) =>
+          matchesQuery(p) &&
+          (ignore === 'neighborhood' || filters.neighborhood === 'any' || p.neighborhood === filters.neighborhood) &&
+          (ignore === 'activity' || filters.activity === 'any' || p.activities.includes(filters.activity)) &&
+          (ignore === 'experience' || filters.experience === 'any' || p.experiences.includes(filters.experience)),
+      );
+
+    const nbBase = base('neighborhood');
+    const acBase = base('activity');
+    const exBase = base('experience');
+
+    const neighborhood: Record<string, number> = { any: nbBase.length };
+    for (const n of NEIGHBORHOODS) neighborhood[n.id] = nbBase.filter((p) => p.neighborhood === n.id).length;
+
+    const activity: Record<string, number> = { any: acBase.length };
+    for (const a of ACTIVITIES) activity[a.id] = acBase.filter((p) => p.activities.includes(a.id)).length;
+
+    const experience: Record<string, number> = { any: exBase.length };
+    for (const e of EXPERIENCES) experience[e.id] = exBase.filter((p) => p.experiences.includes(e.id)).length;
+
+    return { neighborhood, activity, experience };
+  }, [allPlaces, filters, query]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return allPlaces.filter((p) => {
-      const matchesCategory = active === 'all' || p.categories.includes(active);
       const matchesQuery =
         q === '' ||
         p.name.toLowerCase().includes(q) ||
         (p.note ?? '').toLowerCase().includes(q);
-      return matchesCategory && matchesQuery;
+      const matchesNeighborhood = filters.neighborhood === 'any' || p.neighborhood === filters.neighborhood;
+      const matchesActivity = filters.activity === 'any' || p.activities.includes(filters.activity);
+      const matchesExperience = filters.experience === 'any' || p.experiences.includes(filters.experience);
+      return matchesQuery && matchesNeighborhood && matchesActivity && matchesExperience;
     });
-  }, [allPlaces, active, query]);
+  }, [allPlaces, filters, query]);
 
   return (
     <div className="app">
@@ -118,7 +152,7 @@ export default function App() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.12, type: 'spring', stiffness: 200, damping: 24 }}
         >
-          Ashley&rsquo;s <em>San Francisco</em>
+          <em>SF Guide</em>
         </motion.h1>
         <motion.p
           className="hero-sub"
@@ -133,8 +167,8 @@ export default function App() {
       <main className="main">
         <LayoutGroup>
           <FilterBar
-            active={active}
-            onChange={setActive}
+            filters={filters}
+            onChange={setFilters}
             query={query}
             onQueryChange={setQuery}
             counts={counts}
@@ -143,7 +177,7 @@ export default function App() {
           <div className="results-meta" aria-live="polite">
             {loading
               ? 'Loading the list…'
-              : filtered.length === allPlaces.length
+              : !anyActive
                 ? `Showing everything (${filtered.length})`
                 : `${filtered.length} place${filtered.length === 1 ? '' : 's'}`}
             {visited.size > 0 && (

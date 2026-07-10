@@ -1,5 +1,10 @@
 import { motion } from 'framer-motion';
-import { CATEGORY_MAP, type Place } from '../data/places';
+import {
+  ACTIVITY_MAP,
+  EXPERIENCE_MAP,
+  NEIGHBORHOOD_MAP,
+  type Place,
+} from '../data/places';
 
 interface PlaceCardProps {
   place: Place;
@@ -8,7 +13,8 @@ interface PlaceCardProps {
 }
 
 export function PlaceCard({ place, visited, onToggleVisited }: PlaceCardProps) {
-  const primary = CATEGORY_MAP[place.categories[0]];
+  const primary = ACTIVITY_MAP[place.activities[0]] ?? ACTIVITY_MAP.eat;
+  const neighborhood = NEIGHBORHOOD_MAP[place.neighborhood];
 
   return (
     <motion.li
@@ -40,11 +46,33 @@ export function PlaceCard({ place, visited, onToggleVisited }: PlaceCardProps) {
         <h3 className="card-name">{place.name}</h3>
         {place.note && <p className="card-note">{place.note}</p>}
         <div className="card-tags">
-          {place.categories.map((catId) => {
-            const cat = CATEGORY_MAP[catId];
+          {neighborhood && (
+            <span
+              className="tag tag--hood"
+              style={{ '--accent': neighborhood.accent } as React.CSSProperties}
+            >
+              {neighborhood.emoji} {neighborhood.label}
+            </span>
+          )}
+          {place.activities.map((id) => {
+            const activity = ACTIVITY_MAP[id];
+            if (!activity) return null;
             return (
-              <span key={catId} className="tag" style={{ '--accent': cat.accent } as React.CSSProperties}>
-                {cat.label}
+              <span key={id} className="tag" style={{ '--accent': activity.accent } as React.CSSProperties}>
+                {activity.label}
+              </span>
+            );
+          })}
+          {place.experiences.map((id) => {
+            const experience = EXPERIENCE_MAP[id];
+            if (!experience) return null;
+            return (
+              <span
+                key={id}
+                className="tag tag--exp"
+                style={{ '--accent': experience.accent } as React.CSSProperties}
+              >
+                {experience.label}
               </span>
             );
           })}

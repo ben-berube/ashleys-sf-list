@@ -1,41 +1,95 @@
-export type CategoryId =
+export type NeighborhoodId =
+  | 'mission'
+  | 'north-beach'
+  | 'marina'
+  | 'haight'
+  | 'fillmore'
+  | 'chinatown'
+  | 'fidi'
+  | 'castro'
+  | 'richmond'
+  | 'nob-hill'
+  | 'outside';
+
+export type ActivityId =
   | 'wine'
   | 'beer'
   | 'cocktails'
-  | 'vibes'
-  | 'speakeasy'
-  | 'restaurants'
-  | 'nature'
+  | 'eat'
+  | 'outdoors'
   | 'explore';
 
-export interface Category {
-  id: CategoryId;
+export type ExperienceId =
+  | 'vibes'
+  | 'speakeasy'
+  | 'scenic'
+  | 'elevated'
+  | 'discover'
+  | 'classic';
+
+export interface Tag<TId extends string> {
+  id: TId;
   label: string;
   emoji: string;
   accent: string;
 }
 
+export type Neighborhood = Tag<NeighborhoodId>;
+export type Activity = Tag<ActivityId>;
+export type Experience = Tag<ExperienceId>;
+
 export interface Place {
   id: string;
   name: string;
-  categories: CategoryId[];
+  neighborhood: NeighborhoodId;
+  activities: ActivityId[];
+  experiences: ExperienceId[];
   note?: string;
 }
 
-export const CATEGORIES: Category[] = [
-  { id: 'wine', label: 'Wine', emoji: '🍷', accent: '#8e2437' },
-  { id: 'beer', label: 'Beer', emoji: '🍺', accent: '#c8861f' },
-  { id: 'cocktails', label: 'Cocktails & Vibes', emoji: '🍸', accent: '#ce1126' },
-  { id: 'vibes', label: 'Overall Vibes', emoji: '✨', accent: '#2d5da8' },
-  { id: 'speakeasy', label: 'Speakeasies', emoji: '🎩', accent: '#4a2c4e' },
-  { id: 'restaurants', label: 'Restaurants', emoji: '🍽️', accent: '#c1512f' },
-  { id: 'nature', label: 'Nature & Scenic', emoji: '🌿', accent: '#2e7d4f' },
-  { id: 'explore', label: 'Places to Explore', emoji: '🧭', accent: '#17767b' },
+export const NEIGHBORHOODS: Neighborhood[] = [
+  { id: 'mission', label: 'Mission', emoji: '🌮', accent: '#c1512f' },
+  { id: 'north-beach', label: 'North Beach', emoji: '🍝', accent: '#8e2437' },
+  { id: 'marina', label: 'Marina & Cow Hollow', emoji: '⛵', accent: '#2d5da8' },
+  { id: 'haight', label: 'Haight & Cole Valley', emoji: '🌺', accent: '#7b3f9d' },
+  { id: 'fillmore', label: 'Fillmore & NoPa', emoji: '🎷', accent: '#b8860b' },
+  { id: 'chinatown', label: 'Chinatown', emoji: '🏮', accent: '#ce1126' },
+  { id: 'fidi', label: 'Embarcadero & FiDi', emoji: '🏙️', accent: '#17767b' },
+  { id: 'castro', label: 'Castro', emoji: '🌈', accent: '#d1477a' },
+  { id: 'richmond', label: 'Richmond & Sunset', emoji: '🌊', accent: '#2e7d4f' },
+  { id: 'nob-hill', label: 'Nob Hill & Downtown', emoji: '🚡', accent: '#4a2c4e' },
+  { id: 'outside', label: 'Outside the City', emoji: '🏞️', accent: '#5a7d2e' },
 ];
 
-export const CATEGORY_MAP: Record<CategoryId, Category> = Object.fromEntries(
-  CATEGORIES.map((c) => [c.id, c]),
-) as Record<CategoryId, Category>;
+export const ACTIVITIES: Activity[] = [
+  { id: 'wine', label: 'Wine', emoji: '🍷', accent: '#8e2437' },
+  { id: 'beer', label: 'Beer', emoji: '🍺', accent: '#c8861f' },
+  { id: 'cocktails', label: 'Cocktails', emoji: '🍸', accent: '#ce1126' },
+  { id: 'eat', label: 'Eat', emoji: '🍽️', accent: '#c1512f' },
+  { id: 'outdoors', label: 'Outdoors', emoji: '🌿', accent: '#2e7d4f' },
+  { id: 'explore', label: 'Explore', emoji: '🧭', accent: '#17767b' },
+];
+
+export const EXPERIENCES: Experience[] = [
+  { id: 'vibes', label: 'Vibes', emoji: '✨', accent: '#2d5da8' },
+  { id: 'speakeasy', label: 'Speakeasy', emoji: '🎩', accent: '#4a2c4e' },
+  { id: 'scenic', label: 'Scenic', emoji: '🏞️', accent: '#2e7d4f' },
+  { id: 'elevated', label: 'Elevated', emoji: '🥂', accent: '#a8842c' },
+  { id: 'discover', label: 'Discover', emoji: '🔦', accent: '#c26a2f' },
+  { id: 'classic', label: 'Classic', emoji: '⭐', accent: '#6b4a2b' },
+];
+
+export const NEIGHBORHOOD_MAP: Record<NeighborhoodId, Neighborhood> = Object.fromEntries(
+  NEIGHBORHOODS.map((n) => [n.id, n]),
+) as Record<NeighborhoodId, Neighborhood>;
+
+export const ACTIVITY_MAP: Record<ActivityId, Activity> = Object.fromEntries(
+  ACTIVITIES.map((a) => [a.id, a]),
+) as Record<ActivityId, Activity>;
+
+export const EXPERIENCE_MAP: Record<ExperienceId, Experience> = Object.fromEntries(
+  EXPERIENCES.map((e) => [e.id, e]),
+) as Record<ExperienceId, Experience>;
 
 export function slugify(name: string): string {
   return name

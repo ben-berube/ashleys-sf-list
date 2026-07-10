@@ -2,221 +2,345 @@
   {
     "id": "amelie",
     "name": "Amelie",
-    "categories": [
+    "neighborhood": "nob-hill",
+    "activities": [
       "wine"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "bodega",
     "name": "Bodega",
-    "categories": [
+    "neighborhood": "mission",
+    "activities": [
       "wine"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "beretta",
     "name": "Beretta",
-    "categories": [
+    "neighborhood": "mission",
+    "activities": [
       "wine"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "golden-sardine",
     "name": "Golden Sardine",
-    "categories": [
+    "neighborhood": "mission",
+    "activities": [
       "wine"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "qua-o-la",
     "name": "Qua o La",
-    "categories": [
+    "neighborhood": "north-beach",
+    "activities": [
       "wine"
+    ],
+    "experiences": [
+      "discover"
     ],
     "note": "new wine bar"
   },
   {
     "id": "waystone",
     "name": "Waystone",
-    "categories": [
+    "neighborhood": "richmond",
+    "activities": [
       "wine"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "key-klub",
     "name": "Key Klub",
-    "categories": [
+    "neighborhood": "mission",
+    "activities": [
       "wine"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "bar-crudo",
     "name": "Bar Crudo",
-    "categories": [
+    "neighborhood": "fillmore",
+    "activities": [
       "wine"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "fools-errand",
     "name": "Fools Errand",
-    "categories": [
+    "neighborhood": "fillmore",
+    "activities": [
       "wine",
       "beer"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "murphy-s-pub",
     "name": "Murphy's Pub",
-    "categories": [
+    "neighborhood": "richmond",
+    "activities": [
       "beer"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "aces",
     "name": "Aces",
-    "categories": [
+    "neighborhood": "nob-hill",
+    "activities": [
       "beer"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "standard-deviant",
     "name": "Standard Deviant",
-    "categories": [
+    "neighborhood": "mission",
+    "activities": [
       "beer"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "el-chato",
     "name": "El Chato",
-    "categories": [
+    "neighborhood": "mission",
+    "activities": [
       "cocktails"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "peacekeeper",
     "name": "Peacekeeper",
-    "categories": [
+    "neighborhood": "mission",
+    "activities": [
       "cocktails"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "harper-rhye",
     "name": "Harper & Rhye",
-    "categories": [
+    "neighborhood": "marina",
+    "activities": [
       "cocktails"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "bar-darling",
     "name": "Bar Darling",
-    "categories": [
+    "neighborhood": "mission",
+    "activities": [
       "cocktails"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "april-jean",
     "name": "April Jean",
-    "categories": [
+    "neighborhood": "marina",
+    "activities": [
       "cocktails"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "left-door",
     "name": "Left Door",
-    "categories": [
-      "cocktails",
-      "speakeasy"
+    "neighborhood": "fillmore",
+    "activities": [
+      "cocktails"
+    ],
+    "experiences": [
+      "speakeasy",
+      "elevated"
     ],
     "note": "elevated chic"
   },
   {
     "id": "vesuvio-s",
     "name": "Vesuvio's",
-    "categories": [
+    "neighborhood": "north-beach",
+    "activities": [
       "cocktails"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "pellegrini-s",
     "name": "Pellegrini's",
-    "categories": [
+    "neighborhood": "north-beach",
+    "activities": [
       "cocktails"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "off-the-record",
     "name": "Off the Record",
-    "categories": [
+    "neighborhood": "nob-hill",
+    "activities": [
       "cocktails"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "bar-morella",
     "name": "Bar Morella",
-    "categories": [
+    "neighborhood": "mission",
+    "activities": [
       "cocktails"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "persona",
     "name": "Persona",
-    "categories": [
+    "neighborhood": "mission",
+    "activities": [
       "cocktails"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "hi-lo",
     "name": "Hi Lo",
-    "categories": [
+    "neighborhood": "marina",
+    "activities": [
       "cocktails"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "busstop",
     "name": "Busstop",
-    "categories": [
+    "neighborhood": "marina",
+    "activities": [
+      "cocktails"
+    ],
+    "experiences": [
       "vibes"
     ]
   },
   {
     "id": "boardroom",
     "name": "Boardroom",
-    "categories": [
+    "neighborhood": "marina",
+    "activities": [
+      "cocktails"
+    ],
+    "experiences": [
       "vibes"
     ]
   },
   {
     "id": "northstar",
     "name": "Northstar",
-    "categories": [
+    "neighborhood": "marina",
+    "activities": [
+      "cocktails"
+    ],
+    "experiences": [
       "vibes"
     ]
   },
   {
     "id": "brazen-head",
     "name": "Brazen Head",
-    "categories": [
+    "neighborhood": "marina",
+    "activities": [
+      "cocktails"
+    ],
+    "experiences": [
       "vibes"
     ]
   },
   {
     "id": "bar-crem",
     "name": "Bar Crem",
-    "categories": [
+    "neighborhood": "mission",
+    "activities": [
+      "cocktails"
+    ],
+    "experiences": [
       "vibes"
     ]
   },
   {
     "id": "the-page",
     "name": "The Page",
-    "categories": [
+    "neighborhood": "fillmore",
+    "activities": [
+      "cocktails"
+    ],
+    "experiences": [
       "vibes"
     ]
   },
   {
     "id": "the-speakeasy",
     "name": "The Speakeasy",
-    "categories": [
+    "neighborhood": "north-beach",
+    "activities": [
+      "cocktails"
+    ],
+    "experiences": [
       "speakeasy"
     ],
     "note": "1920's theme"
@@ -224,207 +348,330 @@
   {
     "id": "back-to-back",
     "name": "Back to Back",
-    "categories": [
-      "restaurants"
+    "neighborhood": "mission",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "lolita-s",
     "name": "Lolita's",
-    "categories": [
-      "restaurants"
+    "neighborhood": "mission",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "state-bird-provisions",
     "name": "State Bird Provisions",
-    "categories": [
-      "restaurants"
+    "neighborhood": "fillmore",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "fable",
     "name": "Fable",
-    "categories": [
-      "restaurants"
+    "neighborhood": "castro",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "horsefeather",
     "name": "Horsefeather",
-    "categories": [
-      "restaurants"
+    "neighborhood": "fillmore",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "liholiho",
     "name": "Liholiho",
-    "categories": [
-      "restaurants"
+    "neighborhood": "nob-hill",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "nopa",
     "name": "Nopa",
-    "categories": [
-      "restaurants"
+    "neighborhood": "fillmore",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "house-of-prime-rib",
     "name": "House of Prime Rib",
-    "categories": [
-      "restaurants"
+    "neighborhood": "nob-hill",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "boulevard",
     "name": "Boulevard",
-    "categories": [
-      "restaurants"
+    "neighborhood": "fidi",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "hookfish",
     "name": "Hookfish",
-    "categories": [
-      "restaurants"
+    "neighborhood": "richmond",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "kokkari",
     "name": "Kokkari",
-    "categories": [
-      "restaurants"
+    "neighborhood": "fidi",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "cotogna",
     "name": "Cotogna",
-    "categories": [
-      "restaurants"
+    "neighborhood": "fidi",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "tony-s",
     "name": "Tony's",
-    "categories": [
-      "restaurants"
+    "neighborhood": "north-beach",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "flour-water",
     "name": "Flour & Water",
-    "categories": [
-      "restaurants"
+    "neighborhood": "mission",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "out-of-sight-2",
     "name": "Out of Sight 2",
-    "categories": [
-      "restaurants"
+    "neighborhood": "mission",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "china-live",
     "name": "China Live",
-    "categories": [
-      "restaurants"
+    "neighborhood": "chinatown",
+    "activities": [
+      "eat"
+    ],
+    "experiences": [
+      "classic"
     ]
   },
   {
     "id": "crissy-field-marina-green",
     "name": "Crissy Field / Marina Green",
-    "categories": [
-      "nature"
+    "neighborhood": "marina",
+    "activities": [
+      "outdoors"
+    ],
+    "experiences": [
+      "scenic"
     ]
   },
   {
     "id": "golden-gate-park",
     "name": "Golden Gate Park",
-    "categories": [
-      "nature"
+    "neighborhood": "richmond",
+    "activities": [
+      "outdoors"
+    ],
+    "experiences": [
+      "scenic"
     ]
   },
   {
     "id": "panhandle",
     "name": "Panhandle",
-    "categories": [
-      "nature"
+    "neighborhood": "haight",
+    "activities": [
+      "outdoors"
+    ],
+    "experiences": [
+      "scenic"
     ]
   },
   {
     "id": "embarcadero",
     "name": "Embarcadero",
-    "categories": [
-      "nature"
+    "neighborhood": "fidi",
+    "activities": [
+      "outdoors"
+    ],
+    "experiences": [
+      "scenic"
     ]
   },
   {
     "id": "bernal-heights-park",
     "name": "Bernal Heights Park",
-    "categories": [
-      "nature"
+    "neighborhood": "mission",
+    "activities": [
+      "outdoors"
+    ],
+    "experiences": [
+      "scenic"
     ]
   },
   {
     "id": "corona-heights-park",
     "name": "Corona Heights Park",
-    "categories": [
-      "nature"
+    "neighborhood": "castro",
+    "activities": [
+      "outdoors"
+    ],
+    "experiences": [
+      "scenic"
     ]
   },
   {
     "id": "salesforce-tower-park",
     "name": "Salesforce Tower Park",
-    "categories": [
-      "nature"
+    "neighborhood": "fidi",
+    "activities": [
+      "outdoors"
+    ],
+    "experiences": [
+      "scenic"
     ]
   },
   {
     "id": "johnson-s-beach",
     "name": "Johnson's Beach",
-    "categories": [
+    "neighborhood": "outside",
+    "activities": [
+      "outdoors",
       "explore"
+    ],
+    "experiences": [
+      "scenic",
+      "discover"
     ],
     "note": "Russian River"
   },
   {
     "id": "jack-s",
     "name": "Jack's",
-    "categories": [
+    "neighborhood": "mission",
+    "activities": [
+      "cocktails",
       "explore"
+    ],
+    "experiences": [
+      "discover"
     ],
     "note": "bar"
   },
   {
     "id": "hang-ah",
     "name": "Hang Ah",
-    "categories": [
+    "neighborhood": "chinatown",
+    "activities": [
+      "eat",
       "explore"
+    ],
+    "experiences": [
+      "discover"
     ],
     "note": "dim sum"
   },
   {
     "id": "pagan-idol",
     "name": "Pagan Idol",
-    "categories": [
+    "neighborhood": "fidi",
+    "activities": [
+      "cocktails",
       "explore"
+    ],
+    "experiences": [
+      "discover"
     ]
   },
   {
     "id": "tonga",
     "name": "Tonga",
-    "categories": [
+    "neighborhood": "nob-hill",
+    "activities": [
+      "cocktails",
       "explore"
+    ],
+    "experiences": [
+      "discover"
     ]
   },
   {
     "id": "rotunda",
     "name": "Rotunda",
-    "categories": [
+    "neighborhood": "nob-hill",
+    "activities": [
+      "eat",
       "explore"
+    ],
+    "experiences": [
+      "discover"
     ]
   }
 ]

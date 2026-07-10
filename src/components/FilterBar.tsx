@@ -1,15 +1,35 @@
 import { motion } from 'framer-motion';
-import { CATEGORIES, type CategoryId } from '../data/places';
+import {
+  NEIGHBORHOODS,
+  ACTIVITIES,
+  EXPERIENCES,
+  type ActivityId,
+  type ExperienceId,
+  type NeighborhoodId,
+  type Tag,
+} from '../data/places';
 
-interface FilterBarProps {
-  active: CategoryId | 'all';
-  onChange: (id: CategoryId | 'all') => void;
-  query: string;
-  onQueryChange: (q: string) => void;
-  counts: Record<string, number>;
+export interface Filters {
+  neighborhood: NeighborhoodId | 'any';
+  activity: ActivityId | 'any';
+  experience: ExperienceId | 'any';
 }
 
-export function FilterBar({ active, onChange, query, onQueryChange, counts }: FilterBarProps) {
+export interface FilterCounts {
+  neighborhood: Record<string, number>;
+  activity: Record<string, number>;
+  experience: Record<string, number>;
+}
+
+interface FilterBarProps {
+  filters: Filters;
+  onChange: (next: Filters) => void;
+  query: string;
+  onQueryChange: (q: string) => void;
+  counts: FilterCounts;
+}
+
+export function FilterBar({ filters, onChange, query, onQueryChange, counts }: FilterBarProps) {
   return (
     <div className="filter-bar">
       <div className="search-wrap">
@@ -27,24 +47,71 @@ export function FilterBar({ active, onChange, query, onQueryChange, counts }: Fi
         />
       </div>
 
-      <div className="chips" role="tablist" aria-label="Filter by category">
+      <FilterGroup
+        groupId="neighborhood"
+        label="Neighborhood"
+        anyEmoji="🌉"
+        options={NEIGHBORHOODS}
+        active={filters.neighborhood}
+        counts={counts.neighborhood}
+        onSelect={(id) => onChange({ ...filters, neighborhood: id as NeighborhoodId | 'any' })}
+      />
+      <FilterGroup
+        groupId="activity"
+        label="Activity"
+        anyEmoji="🎉"
+        options={ACTIVITIES}
+        active={filters.activity}
+        counts={counts.activity}
+        onSelect={(id) => onChange({ ...filters, activity: id as ActivityId | 'any' })}
+      />
+      <FilterGroup
+        groupId="experience"
+        label="Experience"
+        anyEmoji="💫"
+        options={EXPERIENCES}
+        active={filters.experience}
+        counts={counts.experience}
+        onSelect={(id) => onChange({ ...filters, experience: id as ExperienceId | 'any' })}
+      />
+    </div>
+  );
+}
+
+interface FilterGroupProps {
+  groupId: string;
+  label: string;
+  anyEmoji: string;
+  options: Tag<string>[];
+  active: string;
+  counts: Record<string, number>;
+  onSelect: (id: string) => void;
+}
+
+function FilterGroup({ groupId, label, anyEmoji, options, active, counts, onSelect }: FilterGroupProps) {
+  return (
+    <div className="filter-group">
+      <span className="filter-group-label">{label}</span>
+      <div className="chips" role="tablist" aria-label={`Filter by ${label}`}>
         <Chip
-          isActive={active === 'all'}
-          onClick={() => onChange('all')}
-          emoji="🌉"
-          label="Everything"
-          count={counts.all}
+          pillId={`pill-${groupId}`}
+          isActive={active === 'any'}
+          onClick={() => onSelect('any')}
+          emoji={anyEmoji}
+          label="Any"
+          count={counts.any ?? 0}
           accent="#b8860b"
         />
-        {CATEGORIES.map((cat) => (
+        {options.map((opt) => (
           <Chip
-            key={cat.id}
-            isActive={active === cat.id}
-            onClick={() => onChange(cat.id)}
-            emoji={cat.emoji}
-            label={cat.label}
-            count={counts[cat.id]}
-            accent={cat.accent}
+            key={opt.id}
+            pillId={`pill-${groupId}`}
+            isActive={active === opt.id}
+            onClick={() => onSelect(opt.id)}
+            emoji={opt.emoji}
+            label={opt.label}
+            count={counts[opt.id] ?? 0}
+            accent={opt.accent}
           />
         ))}
       </div>
@@ -53,6 +120,7 @@ export function FilterBar({ active, onChange, query, onQueryChange, counts }: Fi
 }
 
 interface ChipProps {
+  pillId: string;
   isActive: boolean;
   onClick: () => void;
   emoji: string;
@@ -61,7 +129,7 @@ interface ChipProps {
   accent: string;
 }
 
-function Chip({ isActive, onClick, emoji, label, count, accent }: ChipProps) {
+function Chip({ pillId, isActive, onClick, emoji, label, count, accent }: ChipProps) {
   return (
     <button
       role="tab"
@@ -72,7 +140,7 @@ function Chip({ isActive, onClick, emoji, label, count, accent }: ChipProps) {
     >
       {isActive && (
         <motion.span
-          layoutId="chip-pill"
+          layoutId={pillId}
           className="chip-pill"
           transition={{ type: 'spring', stiffness: 450, damping: 35 }}
         />

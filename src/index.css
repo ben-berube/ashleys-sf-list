@@ -159,6 +159,20 @@ body {
   box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
 }
 
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -317,6 +331,17 @@ body {
   border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
   padding: 3px 9px;
   border-radius: 999px;
+}
+
+.tag--hood {
+  color: #fff;
+  background: var(--accent);
+  border-color: transparent;
+}
+
+.tag--exp {
+  border-style: dashed;
+  opacity: 0.85;
 }
 
 /* ---- Visited state ---- */
@@ -591,6 +616,20 @@ body {
 .admin-delete:hover {
   opacity: 1;
   background: color-mix(in srgb, var(--col-red) 10%, transparent);
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.admin-field-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
 .admin-cats {

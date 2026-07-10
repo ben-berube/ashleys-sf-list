@@ -1,6 +1,15 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { CATEGORIES, uniqueId, type CategoryId, type Place } from '../data/places';
+import {
+  ACTIVITIES,
+  EXPERIENCES,
+  NEIGHBORHOODS,
+  uniqueId,
+  type ActivityId,
+  type ExperienceId,
+  type NeighborhoodId,
+  type Place,
+} from '../data/places';
 
 const REPO = 'ben-berube/ashleys-sf-list';
 const FILE_PATH = 'public/places.json';
@@ -83,13 +92,23 @@ export function AdminPanel({
     onChange(places.map((p) => (p.id === id ? { ...p, ...patch } : p)));
   };
 
-  const toggleCategory = (place: Place, cat: CategoryId) => {
-    const has = place.categories.includes(cat);
-    if (has && place.categories.length === 1) return; // keep at least one
+  const setNeighborhood = (place: Place, neighborhood: NeighborhoodId) => {
+    updatePlace(place.id, { neighborhood });
+  };
+
+  const toggleActivity = (place: Place, id: ActivityId) => {
+    const has = place.activities.includes(id);
+    if (has && place.activities.length === 1) return; // keep at least one
     updatePlace(place.id, {
-      categories: has
-        ? place.categories.filter((c) => c !== cat)
-        : [...place.categories, cat],
+      activities: has ? place.activities.filter((a) => a !== id) : [...place.activities, id],
+    });
+  };
+
+  const toggleExperience = (place: Place, id: ExperienceId) => {
+    const has = place.experiences.includes(id);
+    if (has && place.experiences.length === 1) return; // keep at least one
+    updatePlace(place.id, {
+      experiences: has ? place.experiences.filter((e) => e !== id) : [...place.experiences, id],
     });
   };
 
@@ -99,7 +118,9 @@ export function AdminPanel({
     const next: Place = {
       id: uniqueId(name, places),
       name,
-      categories: ['restaurants'],
+      neighborhood: 'mission',
+      activities: ['eat'],
+      experiences: ['classic'],
     };
     onChange([next, ...places]);
     setNewName('');
@@ -192,21 +213,62 @@ export function AdminPanel({
                     onChange={(e) => updatePlace(p.id, { note: e.target.value || undefined })}
                     aria-label={`Note for ${p.name}`}
                   />
-                  <div className="admin-cats">
-                    {CATEGORIES.map((cat) => {
-                      const on = p.categories.includes(cat.id);
-                      return (
-                        <button
-                          key={cat.id}
-                          className={`admin-cat${on ? ' admin-cat--on' : ''}`}
-                          style={{ '--accent': cat.accent } as React.CSSProperties}
-                          onClick={() => toggleCategory(p, cat.id)}
-                          aria-pressed={on}
-                        >
-                          {cat.emoji} {cat.label}
-                        </button>
-                      );
-                    })}
+                  <div className="admin-field">
+                    <span className="admin-field-label">Neighborhood</span>
+                    <div className="admin-cats">
+                      {NEIGHBORHOODS.map((n) => {
+                        const on = p.neighborhood === n.id;
+                        return (
+                          <button
+                            key={n.id}
+                            className={`admin-cat${on ? ' admin-cat--on' : ''}`}
+                            style={{ '--accent': n.accent } as React.CSSProperties}
+                            onClick={() => setNeighborhood(p, n.id)}
+                            aria-pressed={on}
+                          >
+                            {n.emoji} {n.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className="admin-field">
+                    <span className="admin-field-label">Activity</span>
+                    <div className="admin-cats">
+                      {ACTIVITIES.map((a) => {
+                        const on = p.activities.includes(a.id);
+                        return (
+                          <button
+                            key={a.id}
+                            className={`admin-cat${on ? ' admin-cat--on' : ''}`}
+                            style={{ '--accent': a.accent } as React.CSSProperties}
+                            onClick={() => toggleActivity(p, a.id)}
+                            aria-pressed={on}
+                          >
+                            {a.emoji} {a.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className="admin-field">
+                    <span className="admin-field-label">Experience</span>
+                    <div className="admin-cats">
+                      {EXPERIENCES.map((e) => {
+                        const on = p.experiences.includes(e.id);
+                        return (
+                          <button
+                            key={e.id}
+                            className={`admin-cat${on ? ' admin-cat--on' : ''}`}
+                            style={{ '--accent': e.accent } as React.CSSProperties}
+                            onClick={() => toggleExperience(p, e.id)}
+                            aria-pressed={on}
+                          >
+                            {e.emoji} {e.label}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
                 </li>
               ))}
